@@ -71,12 +71,8 @@ def get_orbits(sys, family, libr=None, branch=None, periodmin=None, periodmax=No
 def request(**kwargs):
     params = dict([(k, v) for k, v in kwargs.items() if v != None])
     response = requests.get(api_url, params=params)
-    response_text = json.loads(response.text)
     if response.status_code != 200:
         response.raise_for_status()
-        # print(f'ERROR HTTP Code: {response.status_code}')
-        # print(response_text['message'])
-        # return dict()
 
     orbit_data = json.loads(response.content)
 
